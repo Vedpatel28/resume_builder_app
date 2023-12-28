@@ -38,6 +38,8 @@ dependencies:
   google_fonts: any
   provider: any
   intl: any
+  image_picker: any
+  pdf: any
 
 dev_dependencies:
   flutter_test:
