@@ -4,6 +4,7 @@ import 'dart:developer';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:resume_builder_app/controller/date_picker_controller.dart';
@@ -358,22 +359,24 @@ class HomePage extends StatelessWidget {
               ),
               SizedBox(height: s.height * 0.02),
               // Nationality
-              TextFormField(
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return "Enter The Nationality";
-                  } else {
-                    return null;
-                  }
-                },
-                textInputAction: TextInputAction.next,
-                onSaved: (newValue) {
-                  VariableModal.nationality.text = newValue!;
-                },
-                controller: VariableModal.nationality,
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: "Nationality",
+              Form(
+                key: formKey,
+                child: TextFormField(
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return "Enter The Nationality";
+                    } else {
+                      return null;
+                    }
+                  },
+                  onSaved: (newValue) {
+                    VariableModal.nationality.text = newValue!;
+                  },
+                  controller: VariableModal.nationality,
+                  decoration: const InputDecoration(
+                    border: OutlineInputBorder(),
+                    labelText: "Nationality",
+                  ),
                 ),
               ),
               SizedBox(height: s.height * 0.04),
