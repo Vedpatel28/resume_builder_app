@@ -43,7 +43,12 @@ class HomePage extends StatelessWidget {
                   children: [
                     Text(
                       "Personal Details",
-                      style: GoogleFonts.jetBrainsMono(),
+                      style: GoogleFonts.jetBrainsMono(
+                        textStyle: TextStyle(
+                          fontSize: s.height * 0.025,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
                     ),
                     const Divider(),
                     SizedBox(height: s.height * 0.01),
@@ -193,11 +198,92 @@ class HomePage extends StatelessWidget {
                     ),
                     SizedBox(height: s.height * 0.02),
                     Text(
-                      "Personal Details",
-                      style: GoogleFonts.jetBrainsMono(),
+                      "Job Information",
+                      style: GoogleFonts.jetBrainsMono(
+                        textStyle: TextStyle(
+                          fontSize: s.height * 0.025,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
                     ),
                     const Divider(),
                     SizedBox(height: s.height * 0.01),
+                    // Job Title
+                    TextFormField(
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return "Enter The Job Title";
+                        } else {
+                          return null;
+                        }
+                      },
+                      textInputAction: TextInputAction.next,
+                      onSaved: (newValue) {
+                        VariableModal.jobTitle.text = newValue!;
+                      },
+                      controller: VariableModal.jobTitle,
+                      decoration: const InputDecoration(
+                        border: OutlineInputBorder(),
+                        labelText: "Job Title",
+                        prefixIcon: Icon(Icons.post_add),
+                      ),
+                    ),
+                    SizedBox(height: s.height * 0.02),
+                    // Study
+                    Row(
+                      children: [
+                        Text(
+                          "Study",
+                          style: GoogleFonts.jetBrainsMono(
+                            textStyle: TextStyle(
+                              fontSize: s.height * 0.021,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                        const Spacer(),
+                        PopupMenuButton(
+                          elevation: 2,
+                          icon: const Icon(Icons.arrow_drop_down_sharp,size: 35,),
+                          onSelected: (value) {
+                            if (value == '10th') {
+                              VariableModal.study.text = '10th';
+                            }
+                            if (value == '12th') {
+                              VariableModal.study.text = '12th';
+                            }
+                            if (value == 'college') {
+                              VariableModal.study.text = 'Bachelor Complete';
+                            }
+                            if (value == 'collegeMaster') {
+                              VariableModal.study.text = 'Master Complete';
+                            }
+                          },
+                          itemBuilder: (context) {
+                            return [
+                              const PopupMenuItem(
+                                value: '10th',
+                                child: Text(" SSC (10th)"),
+                              ),
+                              const PopupMenuItem(
+                                value: '12th',
+                                child: Text(" HSC (12th)"),
+                              ),
+                              const PopupMenuItem(
+                                value: 'college',
+                                child: Text(" college (Bachelor completed)"),
+                              ),
+                              const PopupMenuItem(
+                                value: 'collegeMaster',
+                                child: Text(" college (Master completed)"),
+                              ),
+                            ];
+                          },
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: s.height * 0.02),
+
                   ],
                 ),
               );
